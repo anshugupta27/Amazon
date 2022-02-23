@@ -1,0 +1,27 @@
+https://binarysearch.com/problems/Merging-Two-Sorted-Lists
+
+
+
+
+vector<int> solve(vector<int>& a, vector<int>& b) {
+    int n = a.size() , m = b.size() ;
+    vector<int> finalAns  ;
+    int itr1 = 0 , itr2 = 0 ; 
+    while ( itr1 < n and itr2 < m )
+    {
+        if ( a[itr1] < b[itr2] ) 
+        {
+            finalAns.push_back ( a[itr1++] ) ;
+        }
+        else finalAns.push_back ( b[itr2++] ) ;
+    }
+    while ( itr1 < n )
+    {
+        finalAns.push_back ( a[itr1++] ) ;
+    }
+    while ( itr2 < m )
+    {
+       finalAns.push_back ( b[itr2++] ) ;
+    }
+    return finalAns ; 
+}
