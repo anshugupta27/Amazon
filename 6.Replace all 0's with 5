@@ -1,0 +1,22 @@
+https://practice.geeksforgeeks.org/problems/replace-all-0s-with-5/1/?track=amazon-arrays&batchId=192#
+
+int convertFiveUtil ( int n  )
+{
+    int temp = n ; 
+    int finalAns = 0 ; 
+    int i = 0 ; 
+    while ( temp > 0 )
+    {
+        int lastDigit = temp % 10 ; 
+        if ( lastDigit == 0 )
+        finalAns = (5 * pow(10,i) )+ finalAns ;
+        else finalAns = (lastDigit * pow(10,i) )+ finalAns ;
+        temp = temp / 10 ; 
+        i++ ; 
+    }
+    return finalAns ; 
+}
+int convertFive(int n) {
+   
+    return convertFiveUtil ( n  ) ;
+}
