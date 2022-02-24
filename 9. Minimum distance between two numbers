@@ -1,0 +1,24 @@
+https://practice.geeksforgeeks.org/problems/minimum-distance-between-two-numbers/1/?track=amazon-arrays&batchId=192
+
+
+ int minDist(int a[], int n, int x, int y) {
+        int lastX = -1 , lastY = -1 ; 
+        int MinAns = INT_MAX ; 
+        for ( int i = 0 ; i < n ; i++ )
+        {
+            if ( a[i] == x )
+            {
+                if ( lastY != -1 )
+                MinAns = min ( MinAns , abs(lastY-i) ) ;
+                lastX = i ; 
+            }
+            else if ( a[i] == y )
+            {
+                if ( lastX != -1 )
+                MinAns = min ( MinAns , abs (lastX-i) )  ;
+                lastY = i ; 
+            }
+        }
+        return MinAns == INT_MAX ? -1 : MinAns ;
+        // code here
+    }
