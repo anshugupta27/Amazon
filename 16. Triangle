@@ -1,0 +1,21 @@
+https://leetcode.com/problems/triangle/submissions/
+
+class Solution {
+public:
+    int minimumTotalUtil ( int row , int col , vector<vector<int>> & triangle , vector<vector<int>> &dp)
+    {
+        if ( row >= triangle.size() ) return INT_MAX ;
+        if  ( dp[row][col] != -1 ) return dp[row][col] ;
+        // move down 
+        int down = minimumTotalUtil ( row+1 , col , triangle , dp ) ;
+        // move down-right
+        int diagonalRight = minimumTotalUtil ( row+1 , col+1 , triangle ,dp ) ;
+        int x = min ( down , diagonalRight ) == INT_MAX ? 0 : min ( down , diagonalRight ) ;
+        return dp[row][col] =  x + triangle[row][col];
+    }
+    int minimumTotal(vector<vector<int>>& triangle) {
+        int row = triangle.size() , col = triangle[row-1].size() ;
+        vector<vector<int>>dp(row,vector<int>(col,-1)) ;
+        return minimumTotalUtil ( 0 , 0 , triangle , dp ) ;
+    }
+};
