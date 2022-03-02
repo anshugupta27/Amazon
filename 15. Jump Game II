@@ -1,0 +1,24 @@
+https://leetcode.com/problems/jump-game-ii/
+
+class Solution {
+public:
+    int jumpUtil ( int index , vector<int>&nums , vector<int> &dp )
+    {
+        if ( index >= nums.size()-1 ) return 0 ; 
+        if ( dp[index] != -1 ) return dp[index] ;
+        int MinAns = INT_MAX ; 
+        for ( int i = 1 ; i <= nums[index] ; i++ )
+        {
+            int x = jumpUtil ( index+i , nums , dp ) ;
+            if ( x != INT_MAX )
+            MinAns = min ( MinAns , 1 + x ) ;
+        }
+        return dp[index] = MinAns ; 
+    }
+    int jump(vector<int>& nums) {
+        int index = 0 ; 
+        vector<int>dp(nums.size(),-1) ;
+        return jumpUtil ( index , nums , dp ) ;
+        
+    }
+};
