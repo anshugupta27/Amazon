@@ -1,0 +1,25 @@
+https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
+
+class Solution {
+public:
+    TreeNode* sortedListToBSTUtil ( ListNode* head , ListNode* tail )
+    {
+        if ( head == tail ) return NULL;
+        ListNode* slow = head , *fast = head ; 
+        while ( fast != tail and fast -> next != tail )
+        {
+         
+            slow = slow -> next ; 
+            fast = fast -> next -> next ; 
+        }
+        TreeNode* newNode = new TreeNode (slow->val) ;
+        newNode -> left = sortedListToBSTUtil ( head , slow ) ;
+        newNode -> right = sortedListToBSTUtil ( slow-> next , tail ) ;
+        return newNode ; 
+    }
+    TreeNode* sortedListToBST(ListNode* head) {
+        ListNode* tail = NULL ; 
+        return sortedListToBSTUtil ( head , tail ) ;
+        
+    }
+};
