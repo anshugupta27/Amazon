@@ -1,0 +1,25 @@
+https://leetcode.com/problems/reducing-dishes/
+
+
+class Solution {
+public:
+    int maxSatisfactionUtil ( vector<int> &sat , int i , int index , vector<vector<int>> &dp )
+    {
+        if ( index >= sat.size() ) return 0 ;
+        if ( dp[index][i] != -1 ) return dp[index][i] ;
+        
+        //consider
+        int take = (sat[index] *  i) + ( maxSatisfactionUtil ( sat , i+1 , index+1 , dp ) );
+        
+        //dont consider 
+        int dontTake = maxSatisfactionUtil ( sat , i , index+1 , dp ) ;
+        
+        return dp[index][i] = max ( take , dontTake ) ;
+    }
+    int maxSatisfaction(vector<int>& sat) {
+        sort ( sat.begin() , sat.end() ) ;
+        int size = sat.size() ;
+        vector<vector<int>> dp(size+1,vector<int>(size+1,-1)) ;
+        return maxSatisfactionUtil ( sat , 1 , 0 , dp ) ;
+    }
+};
