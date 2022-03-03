@@ -1,0 +1,26 @@
+https://leetcode.com/problems/find-peak-element/
+
+
+
+O(log(n)) Binary Search:
+How does binary search work for this problem?
+Let's look at mid.
+If nums[mid] < nums[mid+1], then there has to be a peak element in the right side of mid.
+Either the numbers increase until we reach the end and then the last element will be a peak, or at some point a number gets smaller and right there we will have a peak.
+Same for the left side of mid.
+
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        int lo = 0, hi = nums.size()-1, mid;
+        
+        while (lo < hi) {
+            mid = lo + (hi - lo) / 2;
+            if (nums[mid] < nums[mid + 1]) 
+                lo = mid + 1;
+            else hi = mid;
+        }
+        
+        return lo;
+    }
+};
